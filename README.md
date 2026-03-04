@@ -1,81 +1,85 @@
 # AI Image Generator
 
-A Streamlit-based chat interface for generating images using the [Z-Image-Turbo](https://huggingface.co/spaces/mrfakename/Z-Image-Turbo) model on Hugging Face.
+A Streamlit app that generates images with [Z-Image-Turbo](https://huggingface.co/spaces/mrfakename/Z-Image-Turbo) on Hugging Face and can enhance your prompts using [Qwen3.5-35B-A3B](https://huggingface.co/Qwen/Qwen3.5-35B-A3B) via the Hugging Face Inference API.
 
 ## Features
 
-- Chat-like interface for entering image prompts
-- Configurable image settings (width, height, inference steps)
-- Chat history with generated images and seeds
-- Fast image generation using Z-Image-Turbo
+- **Prompt improvement** — Use the “Improve prompt” button to send your text to Qwen and get a richer, more detailed prompt (tuned for D&D-style places and characters).
+- **Image generation** — Generate images from your prompt (or the improved one) with Z-Image-Turbo.
+- **Configurable settings** — Width, height, and inference steps in the sidebar.
+- **Chat history** — All prompts and generated images are kept in the session.
+- **Blocked UI while loading** — Input and buttons are disabled until the improve or generate request finishes.
 
 ## Installation
 
 1. Clone the repository:
-```bash
-git clone <your-repo-url>
-cd hugging
-```
+   ```bash
+   git clone <your-repo-url>
+   cd ai-rpg-interface
+   ```
 
 2. Create a virtual environment and install dependencies:
-```bash
-python3 -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-```
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate   # On Windows: .venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
 
-3. (Optional) Configure your Hugging Face token:
-```bash
-cp .env.example .env
-# Edit .env and add your HF token
-```
+3. Configure your Hugging Face token. Create a `.env` file in the project root with:
+   ```
+   HF_TOKEN=your_token_here
+   ```
+   Get a token at [https://huggingface.co/settings/tokens](https://huggingface.co/settings/tokens) and ensure it has access to **Inference API** (for prompt improvement) and to use Spaces.
 
 ## Configuration
 
-The app uses environment variables for configuration. Copy `.env.example` to `.env` and configure as needed:
+| Variable   | Required | Description |
+|-----------|----------|-------------|
+| `HF_TOKEN` | Yes     | Hugging Face API token. Used for the image Space (Z-Image-Turbo) and for prompt improvement (Qwen via Inference API). |
 
-| Variable | Required | Description |
-|----------|----------|-------------|
-| `HF_TOKEN` | No | Your Hugging Face API token. Optional for public Spaces, required for private Spaces or higher rate limits. Get yours at https://huggingface.co/settings/tokens |
+Use a `.env` file in the project root. Do not commit `.env`; it should be in `.gitignore`.
 
 ## Usage
 
-Run the Streamlit app:
+Run the app:
 ```bash
 streamlit run app.py
 ```
 
-Then open http://localhost:8501 in your browser.
+Open [http://localhost:8501](http://localhost:8501) in your browser.
 
-### Generating Images
+### Workflow
 
-1. Type a descriptive prompt in the chat input (e.g., "a beautiful sunset over mountains, photorealistic")
-2. Adjust image settings in the sidebar if needed:
-   - **Width/Height**: Image dimensions (512-1280px)
-   - **Inference Steps**: Quality vs speed trade-off (4-20 steps)
-3. Press Enter to generate the image
+1. **Enter a prompt** in the text area (e.g. “a dark tavern with adventurers”).
+2. **(Optional)** Click **“✨ Improve prompt”** to have Qwen expand it into a more detailed prompt; the text area is replaced with the improved version.
+3. Adjust **Width**, **Height**, and **Inference Steps** in the sidebar if you want.
+4. Click **“🎨 Generate”** to create the image. The prompt is sent to Z-Image-Turbo and the result appears in the chat.
 
-### Tips for Better Results
+You can edit the (possibly improved) prompt before generating. Use **“Clear Chat History”** in the sidebar to reset the conversation.
 
-- Be descriptive with your prompts
-- Include style keywords (e.g., "photorealistic", "anime", "oil painting", "digital art")
-- Specify lighting and mood
-- Mention specific details you want in the image
+### Tips
+
+- Be descriptive; the improver works best with a clear starting idea.
+- Use style keywords (e.g. “photorealistic”, “anime”, “oil painting”).
+- Specify lighting and mood for more consistent results.
 
 ## Project Structure
 
 ```
-hugging/
-├── app.py           # Main Streamlit application
-├── requirements.txt # Python dependencies
-├── .env.example     # Environment variables template
+ai-rpg-interface/
+├── app.py           # Main Streamlit app (image gen + prompt improvement)
+├── requirements.txt
 ├── .gitignore
 └── README.md
 ```
+Create a `.env` file with `HF_TOKEN` (do not commit it).
+
+## Customizing the prompt improver
+
+The system prompt for Qwen is defined in `app.py` as `IMPROVE_SYSTEM`. You can change it to adjust tone, focus (e.g. D&D, fantasy, realism), or output format. The placeholder `{prompt}` is replaced with the user’s current text before calling the model.
 
 ## Notes
 
-- The app includes SSL certificate bypass for corporate proxy environments
-- Images are generated using the Z-Image-Turbo Space on Hugging Face
-- HF token is optional for this public Space, but recommended for higher rate limits
-- Never commit your `.env` file - it's already in `.gitignore`
+- The app uses an SSL workaround for environments with strict or corporate proxies.
+- Image generation: Z-Image-Turbo Space on Hugging Face.
+- Prompt improvement: Qwen3.5-35B-A3B via Hugging Face Inference API (router with Novita provider).
