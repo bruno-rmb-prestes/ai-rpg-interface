@@ -1,4 +1,5 @@
 import os
+import random
 import ssl
 from dotenv import load_dotenv
 import streamlit as st
@@ -44,6 +45,30 @@ def get_hf_openai_client():
     )
 
 
+# Thumbnail width for side-by-side display
+IMAGE_THUMB_WIDTH = 220
+
+@st.dialog("Full size image")
+def show_full_size(image_path: str):
+    st.image(image_path)
+    if st.button("Close"):
+        st.session_state.lightbox_path = None
+        st.rerun()
+
+def render_image_gallery(image_paths, key_prefix="gallery"):
+    """Render images side by side, at most 4 per row; 'View full size' opens dialog."""
+    paths = image_paths if isinstance(image_paths, list) else [image_paths]
+    n = len(paths)
+    num_cols = min(n, 4)
+    cols = st.columns(num_cols)
+    for i, path in enumerate(paths):
+        with cols[i % num_cols]:
+            st.image(path, width=IMAGE_THUMB_WIDTH)
+            if st.button("View full size", key=f"{key_prefix}_{i}", use_container_width=True):
+                st.session_state.lightbox_path = path
+                st.rerun()
+
+
 def improve_prompt(raw_prompt: str) -> str:
     if not raw_prompt or not raw_prompt.strip():
         return ""
@@ -80,6 +105,9 @@ if "pending_generate" not in st.session_state:
 # Qwen improved result: applied at start of run so the text area shows it (see "where the answer goes" below)
 if "improved_prompt_to_apply" not in st.session_state:
     st.session_state.improved_prompt_to_apply = None
+# Full-size image dialog (set by "View full size" button in gallery)
+if "lightbox_path" not in st.session_state:
+    st.session_state.lightbox_path = None
 # Clear input on next run (set by generate flow; we apply it here before any widget uses prompt_input)
 if "clear_prompt_on_next_run" not in st.session_state:
     st.session_state.clear_prompt_on_next_run = False
@@ -106,15 +134,19 @@ if "client" not in st.session_state:
             st.error(f"Failed to connect to HF Space: {e}")
             st.stop()
 
-for message in st.session_state.messages:
+for msg_i, message in enumerate(st.session_state.messages):
     with st.chat_message(message["role"]):
         if message["role"] == "user":
             st.markdown(message["content"])
         else:
             if "image" in message:
-                st.image(message["image"])
+                img = message["image"]
+                render_image_gallery(img if isinstance(img, list) else [img], key_prefix=f"msg_{msg_i}")
             if "error" in message:
                 st.error(message["error"])
+
+if st.session_state.get("lightbox_path"):
+    show_full_size(st.session_state.lightbox_path)
 
 # Block input and buttons while waiting for an answer
 is_busy = (
@@ -157,7 +189,7 @@ if st.session_state.pending_improve is not None:
     st.session_state.pending_improve = None
     st.rerun()
 
-# Run generate: blocked UI until image is ready
+# Run generate: blocked UI until image(s) ready; call space once per image when num_images > 1
 if st.session_state.pending_generate is not None:
     prompt = st.session_state.pending_generate
     st.session_state.clear_prompt_on_next_run = True  # clear input at start of next run (before widget)
@@ -167,16 +199,42 @@ if st.session_state.pending_generate is not None:
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
-        with st.spinner("Generating image..."):
-            try:
-                result = st.session_state.client.predict(
-                    prompt=prompt,
-                    height=st.session_state.get("height", 1024),
-                    width=st.session_state.get("width", 1024),
-                    num_inference_steps=st.session_state.get("steps", 9),
-                    randomize_seed=True,
-                    api_name="/generate_image"
-                )
+        num_images = st.session_state.get("num_images", 1)
+        use_random_seed = st.session_state.get("use_random_seed", True)
+        fixed_seed = st.session_state.get("seed", 0)
+        # For a single image we can use fixed seed if user chose it; for multiple we always use distinct random seeds
+        use_fixed_seed = num_images == 1 and not use_random_seed and (fixed_seed is not None and fixed_seed >= 0)
+        # For multiple images, generate completely different seeds so each image is unique
+        if num_images > 1:
+            seeds_to_use = random.sample(range(0, 2**32), num_images)
+        else:
+            seeds_to_use = [int(fixed_seed)] if use_fixed_seed else None
+
+        try:
+            image_paths = []
+            seeds_used = []
+            for i in range(num_images):
+                with st.spinner(f"Generating image {i + 1} of {num_images}..."):
+                    if seeds_to_use is not None:
+                        # Explicit seed(s): use them so each image has a different seed
+                        result = st.session_state.client.predict(
+                            prompt=prompt,
+                            height=st.session_state.get("height", 1024),
+                            width=st.session_state.get("width", 1024),
+                            num_inference_steps=st.session_state.get("steps", 9),
+                            randomize_seed=False,
+                            seed=int(seeds_to_use[i]),
+                            api_name="/generate_image"
+                        )
+                    else:
+                        result = st.session_state.client.predict(
+                            prompt=prompt,
+                            height=st.session_state.get("height", 1024),
+                            width=st.session_state.get("width", 1024),
+                            num_inference_steps=st.session_state.get("steps", 9),
+                            randomize_seed=True,
+                            api_name="/generate_image"
+                        )
 
                 image_data, seed_used = result
 
@@ -187,21 +245,24 @@ if st.session_state.pending_generate is not None:
                 else:
                     image_path = image_data
 
-                st.image(image_path)
-                st.session_state.messages.append({
-                    "role": "assistant",
-                    "image": image_path,
-                    "prompt": prompt,
-                    "seed": int(seed_used)
-                })
+                image_paths.append(image_path)
+                seeds_used.append(int(seed_used))
 
-            except Exception as e:
-                error_msg = f"Error generating image: {str(e)}"
-                st.error(error_msg)
-                st.session_state.messages.append({
-                    "role": "assistant",
-                    "error": error_msg
-                })
+            render_image_gallery(image_paths, key_prefix="new_gen")
+            st.session_state.messages.append({
+                "role": "assistant",
+                "image": image_paths[0] if len(image_paths) == 1 else image_paths,
+                "prompt": prompt,
+                "seed": seeds_used[0] if len(seeds_used) == 1 else seeds_used,
+            })
+
+        except Exception as e:
+            error_msg = f"Error generating image: {str(e)}"
+            st.error(error_msg)
+            st.session_state.messages.append({
+                "role": "assistant",
+                "error": error_msg
+            })
     st.session_state.pending_generate = None
     st.rerun()
 
@@ -239,6 +300,27 @@ with st.sidebar:
         max_value=20,
         value=9,
         help="More steps = better quality but slower"
+    )
+    st.session_state.num_images = st.slider(
+        "Number of images",
+        min_value=1,
+        max_value=8,
+        value=1,
+        help="How many images to generate. For more than 1, each uses a random seed and the space is called once per image."
+    )
+    use_random_seed = st.checkbox(
+        "Random seed",
+        value=True,
+        help="Use a random seed (only applies when generating 1 image). Uncheck and set seed below for reproducible results."
+    )
+    st.session_state.use_random_seed = use_random_seed
+    st.session_state.seed = st.number_input(
+        "Seed (for 1 image only)",
+        min_value=0,
+        max_value=2**32 - 1,
+        value=0,
+        step=1,
+        help="Fixed seed for reproducibility when generating a single image. Ignored when Number of images > 1 or Random seed is on."
     )
     
     st.markdown("---")
