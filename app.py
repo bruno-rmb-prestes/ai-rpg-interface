@@ -45,28 +45,17 @@ def get_hf_openai_client():
     )
 
 
-# Thumbnail width for side-by-side display
-IMAGE_THUMB_WIDTH = 220
-
-@st.dialog("Full size image")
-def show_full_size(image_path: str):
-    st.image(image_path)
-    if st.button("Close"):
-        st.session_state.lightbox_path = None
-        st.rerun()
+IMAGES_PER_ROW = 4
 
 def render_image_gallery(image_paths, key_prefix="gallery"):
-    """Render images side by side, at most 4 per row; 'View full size' opens dialog."""
+    """Show images at full size in a grid, up to 4 per row."""
     paths = image_paths if isinstance(image_paths, list) else [image_paths]
     n = len(paths)
-    num_cols = min(n, 4)
+    num_cols = min(n, IMAGES_PER_ROW)
     cols = st.columns(num_cols)
     for i, path in enumerate(paths):
         with cols[i % num_cols]:
-            st.image(path, width=IMAGE_THUMB_WIDTH)
-            if st.button("View full size", key=f"{key_prefix}_{i}", use_container_width=True):
-                st.session_state.lightbox_path = path
-                st.rerun()
+            st.image(path, width="stretch")  # full size in column
 
 
 def improve_prompt(raw_prompt: str) -> str:
@@ -94,6 +83,12 @@ st.set_page_config(
 st.title("AI Image Generator")
 st.markdown("Generate images using Z-Image-Turbo on Hugging Face")
 
+# Hide Streamlit's built-in fullscreen/expand icon on images
+st.markdown(
+    '<style>button[title="View fullscreen"]{display:none !important;}</style>',
+    unsafe_allow_html=True,
+)
+
 if "messages" not in st.session_state:
     st.session_state.messages = []
 if "prompt_draft" not in st.session_state:
@@ -105,9 +100,6 @@ if "pending_generate" not in st.session_state:
 # Qwen improved result: applied at start of run so the text area shows it (see "where the answer goes" below)
 if "improved_prompt_to_apply" not in st.session_state:
     st.session_state.improved_prompt_to_apply = None
-# Full-size image dialog (set by "View full size" button in gallery)
-if "lightbox_path" not in st.session_state:
-    st.session_state.lightbox_path = None
 # Clear input on next run (set by generate flow; we apply it here before any widget uses prompt_input)
 if "clear_prompt_on_next_run" not in st.session_state:
     st.session_state.clear_prompt_on_next_run = False
@@ -144,9 +136,6 @@ for msg_i, message in enumerate(st.session_state.messages):
                 render_image_gallery(img if isinstance(img, list) else [img], key_prefix=f"msg_{msg_i}")
             if "error" in message:
                 st.error(message["error"])
-
-if st.session_state.get("lightbox_path"):
-    show_full_size(st.session_state.lightbox_path)
 
 # Block input and buttons while waiting for an answer
 is_busy = (
