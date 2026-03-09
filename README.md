@@ -1,6 +1,6 @@
 # AI Image Generator
 
-A Streamlit app that generates images with [Z-Image-Turbo](https://huggingface.co/spaces/mrfakename/Z-Image-Turbo) on Hugging Face and can enhance your prompts using [Qwen3.5-35B-A3B](https://huggingface.co/Qwen/Qwen3.5-35B-A3B) via the Hugging Face Inference API.
+A Streamlit app that generates images with [Z-Image-Turbo](https://huggingface.co/spaces/mrfakename/Z-Image-Turbo) on Hugging Face and can enhance your prompts using [Qwen3.5-35B-A3B](https://huggingface.co/Qwen/Qwen3.5-35B-A3B) via the Hugging Face Inference API. The codebase is split into **UI** (`app.py`) and **business logic** (`services.py`) for clearer structure and easier maintenance.
 
 ## Features
 
@@ -67,16 +67,21 @@ You can edit the (possibly improved) prompt before generating. Use **“Clear Ch
 
 ```
 ai-rpg-interface/
-├── app.py           # Main Streamlit app (image gen + prompt improvement)
+├── app.py           # Streamlit UI: layout, session state, chat, sidebar, event handlers
+├── services.py      # Business logic: HF clients, prompt improvement (Qwen), image generation (Z-Image-Turbo)
 ├── requirements.txt
 ├── .gitignore
 └── README.md
 ```
+
+- **`app.py`** — All Streamlit components: page config, session state, prompt input, buttons, chat history, image gallery, and sidebar settings. It imports and calls functions from `services.py` for API work.
+- **`services.py`** — Hugging Face API usage: OpenAI-compatible client for Qwen, prompt improvement logic, and Gradio client calls for Z-Image-Turbo. No UI code; can be tested or reused independently.
+
 Create a `.env` file with `HF_TOKEN` (do not commit it).
 
 ## Customizing the prompt improver
 
-The system prompt for Qwen is defined in `app.py` as `IMPROVE_SYSTEM`. You can change it to adjust tone, focus (e.g. D&D, fantasy, realism), or output format. The placeholder `{prompt}` is replaced with the user’s current text before calling the model.
+The system prompt for Qwen is defined in `services.py` as `IMPROVE_SYSTEM`. You can change it to adjust tone, focus (e.g. D&D, fantasy, realism), or output format. The placeholder `{prompt}` is replaced with the user’s current text before calling the model. The model name is set in `HF_INFERENCE_MODEL` in the same file.
 
 ## Notes
 
