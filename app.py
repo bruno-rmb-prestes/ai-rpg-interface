@@ -9,7 +9,7 @@ import streamlit as st
 from gradio_client import Client
 import httpcore._backends.sync
 
-from services import improve_prompt, generate_images
+from services import improve_prompt, generate_images, edit_image
 
 load_dotenv()
 
@@ -77,6 +77,8 @@ if "improved_prompt_to_apply" not in st.session_state:
     st.session_state.improved_prompt_to_apply = None  # Qwen result applied at next run
 if "clear_prompt_on_next_run" not in st.session_state:
     st.session_state.clear_prompt_on_next_run = False
+if "pending_edit" not in st.session_state:
+    st.session_state.pending_edit = None
 
 # Applies “clear input” or “use improved prompt” at the start of each run,
 # before the text area is rendered, so the user sees the correct value.
@@ -129,11 +131,23 @@ def render_image_gallery(image_paths, key_prefix="gallery"):
 
 
 # -----------------------------------------------------------------------------
+# Busy state: block input while improve, generate, or edit is running
+# -----------------------------------------------------------------------------
+is_busy = (
+    st.session_state.pending_improve is not None
+    or st.session_state.pending_generate is not None
+    or st.session_state.pending_edit is not None
+)
+
+
+# -----------------------------------------------------------------------------
 # Chat history display
 # -----------------------------------------------------------------------------
 # Renders all stored messages: user prompts as markdown and assistant replies
-# as image galleries or error text. Keeps conversation order and supports
-# both single-image and multi-image assistant messages.
+# as image galleries or error text. Each assistant image also gets inline edit
+# controls (text input + button) so the user can request modifications.
+edit_request = None
+
 for msg_i, message in enumerate(st.session_state.messages):
     with st.chat_message(message["role"]):
         if message["role"] == "user":
@@ -145,19 +159,34 @@ for msg_i, message in enumerate(st.session_state.messages):
                     img if isinstance(img, list) else [img],
                     key_prefix=f"msg_{msg_i}",
                 )
+                edit_col_input, edit_col_btn = st.columns([4, 1])
+                with edit_col_input:
+                    st.text_input(
+                        "Edit instruction",
+                        key=f"edit_text_{msg_i}",
+                        placeholder="Describe the modification...",
+                        disabled=is_busy,
+                        label_visibility="collapsed",
+                    )
+                with edit_col_btn:
+                    edit_clicked = st.button(
+                        "✏️ Edit",
+                        key=f"edit_btn_{msg_i}",
+                        disabled=is_busy,
+                        use_container_width=True,
+                    )
+                if edit_clicked and not is_busy:
+                    edit_text = st.session_state.get(
+                        f"edit_text_{msg_i}", ""
+                    ).strip()
+                    if edit_text:
+                        img_path = img[0] if isinstance(img, list) else img
+                        edit_request = {
+                            "image_path": img_path,
+                            "prompt": edit_text,
+                        }
             if "error" in message:
                 st.error(message["error"])
-
-
-# -----------------------------------------------------------------------------
-# Busy state: block input while improve or generate is running
-# -----------------------------------------------------------------------------
-# Prevents the user from changing the prompt or clicking Improve/Generate
-# again until the current async operation (improve or generate) has finished.
-is_busy = (
-    st.session_state.pending_improve is not None
-    or st.session_state.pending_generate is not None
-)
 
 
 # -----------------------------------------------------------------------------
@@ -258,6 +287,71 @@ if st.session_state.pending_generate is not None:
 
 
 # -----------------------------------------------------------------------------
+# Pending: run image edit (FireRed-Image-Edit)
+# -----------------------------------------------------------------------------
+# When the user clicked "Edit" on an assistant image, we stored the image path
+# and edit instruction in pending_edit. Here we lazily connect to the FireRed
+# Space, call edit_image, and append the result to chat history.
+if st.session_state.pending_edit is not None:
+    edit_data = st.session_state.pending_edit
+
+    if "edit_client" not in st.session_state:
+        with st.spinner("Connecting to FireRed Image Edit Space..."):
+            try:
+                hf_token = os.getenv("HF_TOKEN")
+                st.session_state.edit_client = Client(
+                    "macgaga/FireRed-Image-Edit-1.0-Fast",
+                    token=hf_token,
+                )
+            except Exception as e:
+                st.error(f"Failed to connect to FireRed Edit Space: {e}")
+                st.session_state.pending_edit = None
+                st.rerun()
+
+    st.session_state.messages.append({
+        "role": "user",
+        "content": f"✏️ Edit: {edit_data['prompt']}",
+    })
+
+    with st.chat_message("user"):
+        st.markdown(f"✏️ Edit: {edit_data['prompt']}")
+
+    with st.chat_message("assistant"):
+        with st.spinner("Editing image with FireRed..."):
+            try:
+                edited_path, seed_used = edit_image(
+                    st.session_state.edit_client,
+                    edit_data["image_path"],
+                    edit_data["prompt"],
+                )
+                if edited_path:
+                    render_image_gallery([edited_path], key_prefix="edit_result")
+                    st.session_state.messages.append({
+                        "role": "assistant",
+                        "image": edited_path,
+                        "prompt": edit_data["prompt"],
+                        "seed": seed_used,
+                    })
+                else:
+                    error_msg = "Edit returned no image."
+                    st.error(error_msg)
+                    st.session_state.messages.append({
+                        "role": "assistant",
+                        "error": error_msg,
+                    })
+            except Exception as e:
+                error_msg = f"Error editing image: {str(e)}"
+                st.error(error_msg)
+                st.session_state.messages.append({
+                    "role": "assistant",
+                    "error": error_msg,
+                })
+
+    st.session_state.pending_edit = None
+    st.rerun()
+
+
+# -----------------------------------------------------------------------------
 # Button handlers: queue improve or generate
 # -----------------------------------------------------------------------------
 # When not busy, clicking Improve or Generate sets the corresponding pending
@@ -274,6 +368,10 @@ if not is_busy and generate_clicked and prompt_input.strip():
     st.rerun()
 elif not is_busy and generate_clicked and not prompt_input.strip():
     st.warning("Enter a prompt first, then click Generate.")
+
+if edit_request is not None and not is_busy:
+    st.session_state.pending_edit = edit_request
+    st.rerun()
 
 
 # -----------------------------------------------------------------------------

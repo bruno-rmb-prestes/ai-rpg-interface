@@ -142,3 +142,49 @@ def generate_images(
         seeds_used.append(int(seed_used))
 
     return image_paths, seeds_used
+
+
+# -----------------------------------------------------------------------------
+# Image editing via Hugging Face Space (FireRed-Image-Edit)
+# -----------------------------------------------------------------------------
+# Sends an existing image and an edit instruction to the FireRed-Image-Edit
+# Space.  The Gallery input requires each item wrapped as a GalleryImage dict
+# ({"image": handle_file(...)}).  The output is (ImageData, seed).
+# Returns (edited_image_path, seed_used).
+def edit_image(
+    client,
+    image_path: str,
+    prompt: str,
+    *,
+    seed: int = 0,
+    randomize_seed: bool = True,
+    guidance_scale: float = 1.0,
+    steps: int = 4,
+):
+    from gradio_client import handle_file
+
+    result = client.predict(
+        images=[{"image": handle_file(image_path)}],
+        prompt=prompt,
+        seed=seed,
+        randomize_seed=randomize_seed,
+        guidance_scale=guidance_scale,
+        steps=steps,
+        api_name="/infer",
+    )
+
+    if isinstance(result, tuple):
+        image_data = result[0]
+        seed_used = result[1] if len(result) > 1 else seed
+    else:
+        image_data = result
+        seed_used = seed
+
+    if isinstance(image_data, dict):
+        edited_path = image_data.get("path") or image_data.get("url")
+    elif isinstance(image_data, str):
+        edited_path = image_data
+    else:
+        edited_path = image_data
+
+    return edited_path, int(seed_used)
