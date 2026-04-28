@@ -1,0 +1,50 @@
+Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?it/s]Loading pipeline components...:  20%|██        | 1/5 [00:00<00:02,  1.90it/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s][A
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:02,  1.46s/it][A
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:02<00:01,  1.50s/it][A
+Loading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.15s/it][ALoading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.24s/it]
+Loading pipeline components...:  60%|██████    | 3/5 [00:04<00:03,  1.57s/it]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s][A
+Loading weights:   1%|          | 3/398 [00:00<00:13, 28.91it/s][A
+Loading weights:   6%|▌         | 23/398 [00:00<00:02, 127.22it/s][A
+Loading weights:   9%|▉         | 37/398 [00:00<00:02, 132.61it/s][A
+Loading weights:  14%|█▍        | 55/398 [00:00<00:02, 150.44it/s][A
+Loading weights:  18%|█▊        | 71/398 [00:00<00:02, 144.29it/s][A
+Loading weights:  23%|██▎       | 91/398 [00:00<00:01, 161.39it/s][A
+Loading weights:  27%|██▋       | 108/398 [00:00<00:01, 158.47it/s][A
+Loading weights:  31%|███▏      | 125/398 [00:00<00:01, 156.81it/s][A
+Loading weights:  35%|███▌      | 141/398 [00:00<00:01, 157.31it/s][A
+Loading weights:  40%|███▉      | 158/398 [00:01<00:01, 160.36it/s][A
+Loading weights:  44%|████▍     | 175/398 [00:01<00:02, 107.28it/s][A
+Loading weights:  47%|████▋     | 189/398 [00:01<00:02, 86.66it/s] [A
+Loading weights:  50%|█████     | 200/398 [00:01<00:02, 83.08it/s][A
+Loading weights:  53%|█████▎    | 210/398 [00:01<00:02, 71.14it/s][A
+Loading weights:  55%|█████▌    | 219/398 [00:02<00:02, 63.64it/s][A
+Loading weights:  57%|█████▋    | 227/398 [00:02<00:02, 60.52it/s][A
+Loading weights:  59%|█████▉    | 234/398 [00:02<00:02, 62.21it/s][A
+Loading weights:  61%|██████    | 241/398 [00:02<00:02, 60.67it/s][A
+Loading weights:  62%|██████▏   | 248/398 [00:02<00:02, 54.32it/s][A
+Loading weights:  64%|██████▍   | 256/398 [00:02<00:02, 59.81it/s][A
+Loading weights:  66%|██████▌   | 263/398 [00:02<00:02, 55.54it/s][A
+Loading weights:  68%|██████▊   | 269/398 [00:03<00:02, 50.12it/s][A
+Loading weights:  70%|██████▉   | 278/398 [00:03<00:02, 58.72it/s][A
+Loading weights:  72%|███████▏  | 285/398 [00:03<00:01, 57.88it/s][A
+Loading weights:  73%|███████▎  | 292/398 [00:03<00:02, 51.05it/s][A
+Loading weights:  75%|███████▌  | 300/398 [00:03<00:01, 57.11it/s][A
+Loading weights:  77%|███████▋  | 307/398 [00:03<00:01, 56.53it/s][A
+Loading weights:  79%|███████▊  | 313/398 [00:03<00:01, 48.26it/s][A
+Loading weights:  81%|████████  | 322/398 [00:03<00:01, 57.29it/s][A
+Loading weights:  83%|████████▎ | 329/398 [00:04<00:01, 54.11it/s][A
+Loading weights:  84%|████████▍ | 335/398 [00:04<00:01, 49.03it/s][A
+Loading weights:  86%|████████▋ | 344/398 [00:04<00:00, 58.13it/s][A
+Loading weights:  88%|████████▊ | 351/398 [00:04<00:00, 57.49it/s][A
+Loading weights:  90%|████████▉ | 358/398 [00:04<00:00, 50.83it/s][A
+Loading weights:  92%|█████████▏| 365/398 [00:04<00:00, 54.87it/s][A
+Loading weights:  93%|█████████▎| 371/398 [00:04<00:00, 55.26it/s][A
+Loading weights:  95%|█████████▍| 378/398 [00:05<00:00, 52.33it/s][A
+Loading weights:  97%|█████████▋| 386/398 [00:05<00:00, 58.73it/s][A
+Loading weights:  99%|█████████▊| 393/398 [00:05<00:00, 53.91it/s][ALoading weights: 100%|██████████| 398/398 [00:05<00:00, 74.07it/s]
+Loading pipeline components...:  80%|████████  | 4/5 [00:10<00:03,  3.06s/it]Loading pipeline components...: 100%|██████████| 5/5 [00:10<00:00,  2.13s/it]Loading pipeline components...: 100%|██████████| 5/5 [00:10<00:00,  2.11s/it]
+VRAM loaded GPU0: 19.113012313842773
+VRAM loaded GPU1: 0.0
+Error: CUDA out of memory. Tried to allocate 20.00 MiB. GPU 0 has a total capacity of 19.58 GiB of which 15.94 MiB is free. Including non-PyTorch memory, this process has 19.56 GiB memory in use. Of the allocated memory 19.29 GiB is allocated by PyTorch, and 11.64 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

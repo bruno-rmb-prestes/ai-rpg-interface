@@ -15,26 +15,9 @@ load_dotenv()
 
 
 # -----------------------------------------------------------------------------
-# SSL and TLS configuration for Hugging Face / Gradio
+# (Removed) SSL bypass for Hugging Face endpoints
 # -----------------------------------------------------------------------------
-# Disables certificate verification so the app can reach Hugging Face endpoints
-# in environments where SSL verification would otherwise fail (e.g. some proxies).
-ssl_context = ssl.create_default_context()
-ssl_context.check_hostname = False
-ssl_context.verify_mode = ssl.CERT_NONE
-ssl._create_default_https_context = lambda: ssl_context
-
-_original_start_tls = httpcore._backends.sync.SyncStream.start_tls
-
-
-def _patched_start_tls(self, ssl_context, server_hostname=None, timeout=None):
-    patched_context = ssl.create_default_context()
-    patched_context.check_hostname = False
-    patched_context.verify_mode = ssl.CERT_NONE
-    return _original_start_tls(self, patched_context, server_hostname, timeout)
-
-
-httpcore._backends.sync.SyncStream.start_tls = _patched_start_tls
+# Now connecting to localhost so SSL bypass is no longer required.
 
 
 # -----------------------------------------------------------------------------
@@ -49,7 +32,7 @@ st.set_page_config(
 )
 
 st.title("AI Image Generator")
-st.markdown("Generate images using Z-Image-Turbo on Hugging Face")
+st.markdown("Generate images using Local Z-Image-Turbo")
 
 # Hides Streamlit’s built-in “View fullscreen” button on images to avoid
 # clutter in the gallery.
@@ -74,7 +57,7 @@ if "pending_improve" not in st.session_state:
 if "pending_generate" not in st.session_state:
     st.session_state.pending_generate = None  # prompt being generated, or None
 if "improved_prompt_to_apply" not in st.session_state:
-    st.session_state.improved_prompt_to_apply = None  # Qwen result applied at next run
+    st.session_state.improved_prompt_to_apply = None  # Mistral result applied at next run
 if "clear_prompt_on_next_run" not in st.session_state:
     st.session_state.clear_prompt_on_next_run = False
 if "pending_edit" not in st.session_state:
@@ -93,21 +76,17 @@ if st.session_state.improved_prompt_to_apply is not None:
 
 
 # -----------------------------------------------------------------------------
-# Hugging Face Gradio client (lazy init)
+# Local Gradio client (lazy init)
 # -----------------------------------------------------------------------------
-# Connects to the Z-Image-Turbo Space once and stores the client in session
+# Connects to the local Z-Image-Turbo Server once and stores the client in session
 # state so we don’t reconnect on every rerun. Stops the app with an error
-# if the token is missing or the connection fails.
+# if the local server is not running.
 if "client" not in st.session_state:
-    with st.spinner("Connecting to Hugging Face Space..."):
+    with st.spinner("Connecting to Unified Image Server (port 7860)..."):
         try:
-            hf_token = os.getenv("HF_TOKEN")
-            st.session_state.client = Client(
-                "mrfakename/Z-Image-Turbo",
-                token=hf_token,
-            )
+            st.session_state.client = Client("http://127.0.0.1:7860/")
         except Exception as e:
-            st.error(f"Failed to connect to HF Space: {e}")
+            st.error(f"Failed to connect to Unified Image Server. Ensure unified_backend.py is running. Error: {e}")
             st.stop()
 
 
@@ -217,14 +196,14 @@ with col_generate:
 
 
 # -----------------------------------------------------------------------------
-# Pending: run prompt improvement (Qwen)
+# Pending: run prompt improvement (Mistral)
 # -----------------------------------------------------------------------------
 # When the user clicked “Improve prompt”, we stored the prompt in
 # pending_improve. Here we call the improve API and put the result in
 # improved_prompt_to_apply; the next rerun will apply it to the text area.
 if st.session_state.pending_improve is not None:
     prompt_to_improve = st.session_state.pending_improve
-    with st.spinner("Improving prompt with Qwen..."):
+    with st.spinner("Improving prompt with Mistral Nemo..."):
         try:
             improved = improve_prompt(prompt_to_improve)
             if improved:
@@ -295,19 +274,6 @@ if st.session_state.pending_generate is not None:
 if st.session_state.pending_edit is not None:
     edit_data = st.session_state.pending_edit
 
-    if "edit_client" not in st.session_state:
-        with st.spinner("Connecting to FireRed Image Edit Space..."):
-            try:
-                hf_token = os.getenv("HF_TOKEN")
-                st.session_state.edit_client = Client(
-                    "macgaga/FireRed-Image-Edit-1.0-Fast",
-                    token=hf_token,
-                )
-            except Exception as e:
-                st.error(f"Failed to connect to FireRed Edit Space: {e}")
-                st.session_state.pending_edit = None
-                st.rerun()
-
     st.session_state.messages.append({
         "role": "user",
         "content": f"✏️ Edit: {edit_data['prompt']}",
@@ -317,10 +283,10 @@ if st.session_state.pending_edit is not None:
         st.markdown(f"✏️ Edit: {edit_data['prompt']}")
 
     with st.chat_message("assistant"):
-        with st.spinner("Editing image with FireRed..."):
+        with st.spinner("Editing image with FireRed (this may take a moment to swap models into VRAM)..."):
             try:
                 edited_path, seed_used = edit_image(
-                    st.session_state.edit_client,
+                    st.session_state.client,
                     edit_data["image_path"],
                     edit_data["prompt"],
                 )
@@ -425,8 +391,8 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("### About")
     st.markdown(
-        "This app uses [Z-Image-Turbo](https://huggingface.co/spaces/mrfakename/Z-Image-Turbo) "
-        "on Hugging Face for fast image generation."
+        "This app uses local instances of [Z-Image-Turbo](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo) "
+        "and [FireRed-Image-Edit-1.1](https://huggingface.co/FireRedTeam/FireRed-Image-Edit-1.1) for fast image generation."
     )
     st.markdown("---")
     st.markdown("### Tips")

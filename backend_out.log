@@ -1,0 +1,37 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading Z-Image-Turbo to GPU 0 (8-bit quantized)...
+Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?steps/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?steps/s][A
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:04,  2.33s/steps][ALoading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:04,  2.39s/steps]
+Loading pipeline components...:   0%|          | 0/5 [00:02<?, ?steps/s]
+Traceback (most recent call last):
+  File "/home/brunoprestes/Projects/ai-rpg-interface/unified_backend.py", line 221, in <module>
+    init_models()
+  File "/home/brunoprestes/Projects/ai-rpg-interface/unified_backend.py", line 35, in init_models
+    pipe_gen = DiffusionPipeline.from_pretrained(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 1049, in from_pretrained
+    loaded_sub_model = load_sub_model(
+                       ^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/pipelines/pipeline_loading_utils.py", line 885, in load_sub_model
+    loaded_sub_model = load_method(os.path.join(cached_folder, name), **loading_kwargs)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/models/modeling_utils.py", line 1312, in from_pretrained
+    ) = cls._load_pretrained_model(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/models/modeling_utils.py", line 1699, in _load_pretrained_model
+    offload_index, state_dict_index, _mismatched_keys, _error_msgs = load_fn(shard_file)
+                                                                     ^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/models/model_loading_utils.py", line 368, in _load_shard_file
+    offload_index, state_dict_index = load_model_dict_into_meta(
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/models/model_loading_utils.py", line 253, in load_model_dict_into_meta
+    param = param.to(dtype)
+            ^^^^^^^^^^^^^^^
+KeyboardInterrupt

@@ -1,0 +1,14 @@
+nohup: ignoring input
+Loading Z-Image-Turbo to GPU 0 (8-bit quantized)...
+Traceback (most recent call last):
+  File "/home/brunoprestes/Projects/ai-rpg-interface/unified_backend.py", line 229, in <module>
+    init_models()
+  File "/home/brunoprestes/Projects/ai-rpg-interface/unified_backend.py", line 35, in init_models
+    pipe_gen = DiffusionPipeline.from_pretrained(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 825, in from_pretrained
+    raise NotImplementedError(
+NotImplementedError: cuda:0 not supported. Supported strategies are: balanced, cuda, cpu

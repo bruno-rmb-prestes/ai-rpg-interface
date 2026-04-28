@@ -1,0 +1,25 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] You are using a model of type `qwen3` to instantiate a model of type `t5`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Loading text encoder in 8-bit...
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files: 100%|██████████| 3/3 [00:00<00:00, 20729.67it/s]
+Traceback (most recent call last):
+  File "/home/brunoprestes/Projects/ai-rpg-interface/test_8bit_4.py", line 8, in <module>
+    text_encoder = T5EncoderModel.from_pretrained(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4210, in from_pretrained
+    loading_info, disk_offload_index = cls._load_pretrained_model(model, state_dict, checkpoint_files, load_config)
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4290, in _load_pretrained_model
+    caching_allocator_warmup(model, expanded_device_map, load_config.hf_quantizer)
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4905, in caching_allocator_warmup
+    free_device_memory, total_device_memory = accelerator_module.mem_get_info(index)
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/torch/cuda/memory.py", line 842, in mem_get_info
+    return torch.cuda.cudart().cudaMemGetInfo(device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: out of memory
+Search for `cudaErrorMemoryAllocation' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+

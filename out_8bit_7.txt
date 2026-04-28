@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/home/brunoprestes/Projects/ai-rpg-interface/test_8bit_7.py", line 5, in <module>
+    quant_config = PipelineQuantizationConfig(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/quantizers/pipe_quant_config.py", line 64, in __init__
+    self.post_init()
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/quantizers/pipe_quant_config.py", line 70, in post_init
+    self._validate_init_args()
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/quantizers/pipe_quant_config.py", line 80, in _validate_init_args
+    raise ValueError("Both `quant_kwargs` and `quant_mapping` cannot be None.")
+ValueError: Both `quant_kwargs` and `quant_mapping` cannot be None.

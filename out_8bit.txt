@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/brunoprestes/Projects/ai-rpg-interface/test_8bit.py", line 7, in <module>
+    pipe = DiffusionPipeline.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 802, in from_pretrained
+    raise ValueError("`quantization_config` must be an instance of `PipelineQuantizationConfig`.")
+ValueError: `quantization_config` must be an instance of `PipelineQuantizationConfig`.

@@ -1,0 +1,36 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading model balanced...
+Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?it/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s][A
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:03,  1.57s/it][A
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:03<00:01,  1.61s/it][A
+Loading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.22s/it][ALoading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.32s/it]
+Loading pipeline components...:  20%|██        | 1/5 [00:04<00:16,  4.14s/it]Loading pipeline components...:  40%|████      | 2/5 [00:04<00:06,  2.01s/it]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s][A
+Loading weights:   1%|          | 3/398 [00:00<00:14, 27.59it/s][A
+Loading weights:   6%|▌         | 22/398 [00:00<00:03, 117.53it/s][A
+Loading weights:   9%|▉         | 36/398 [00:00<00:02, 125.75it/s][A
+Loading weights:  14%|█▍        | 56/398 [00:00<00:02, 153.38it/s][A
+Loading weights:  18%|█▊        | 72/398 [00:00<00:02, 146.97it/s][A
+Loading weights:  23%|██▎       | 91/398 [00:00<00:01, 159.74it/s][A
+Loading weights:  27%|██▋       | 108/398 [00:00<00:01, 157.56it/s][A
+Loading weights:  31%|███▏      | 125/398 [00:00<00:01, 156.14it/s][A
+Loading weights:  36%|███▌      | 142/398 [00:00<00:01, 159.66it/s][A
+Loading weights:  40%|███▉      | 159/398 [00:01<00:01, 153.77it/s][A
+Loading weights:  45%|████▍     | 179/398 [00:01<00:01, 166.77it/s][A
+Loading weights:  49%|████▉     | 196/398 [00:01<00:01, 161.97it/s][A
+Loading weights:  54%|█████▎    | 213/398 [00:01<00:01, 159.95it/s][A
+Loading weights:  58%|█████▊    | 231/398 [00:01<00:01, 165.18it/s][A
+Loading weights:  62%|██████▏   | 248/398 [00:01<00:00, 157.27it/s][A
+Loading weights:  67%|██████▋   | 267/398 [00:01<00:00, 165.28it/s][A
+Loading weights:  71%|███████▏  | 284/398 [00:01<00:00, 162.00it/s][A
+Loading weights:  76%|███████▌  | 301/398 [00:01<00:00, 159.77it/s][A
+Loading weights:  80%|███████▉  | 318/398 [00:02<00:00, 162.38it/s][A
+Loading weights:  84%|████████▍ | 335/398 [00:02<00:00, 155.42it/s][A
+Loading weights:  89%|████████▉ | 355/398 [00:02<00:00, 167.02it/s][A
+Loading weights:  93%|█████████▎| 372/398 [00:02<00:00, 162.82it/s][A
+Loading weights:  98%|█████████▊| 389/398 [00:02<00:00, 161.02it/s][ALoading weights: 100%|██████████| 398/398 [00:02<00:00, 157.86it/s]
+Loading pipeline components...:  60%|██████    | 3/5 [00:07<00:04,  2.46s/it]Loading pipeline components...: 100%|██████████| 5/5 [00:07<00:00,  1.11s/it]Loading pipeline components...: 100%|██████████| 5/5 [00:07<00:00,  1.56s/it]
+VRAM GPU0: 19.113012313842773
+VRAM GPU1: 0.0
+Finished!

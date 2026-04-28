@@ -1,0 +1,41 @@
+/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:205: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+Loading FireRed to CPU...
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]Fetching 3 files: 100%|██████████| 3/3 [00:00<00:00, 3327.93it/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:09,  4.96s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:09<00:04,  4.87s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:09<00:00,  2.75s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:09<00:00,  3.33s/it]
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]Loading pipeline components...:  17%|█▋        | 1/6 [00:00<00:03,  1.52it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s][A
+Loading weights:  57%|█████▋    | 419/729 [00:00<00:00, 4160.72it/s][ALoading weights: 100%|██████████| 729/729 [00:00<00:00, 3818.16it/s]
+Loading pipeline components...:  33%|███▎      | 2/6 [00:01<00:02,  1.88it/s]Loading pipeline components...:  50%|█████     | 3/6 [00:01<00:01,  2.53it/s]Loading pipeline components...: 100%|██████████| 6/6 [00:01<00:00,  4.36it/s]
+Expected types for transformer: (<class 'diffusers.models.transformers.transformer_qwenimage.QwenImageTransformer2DModel'>,), got <class 'qwenimage.transformer_qwenimage.QwenImageTransformer2DModel'>.
+VRAM initially: 0.0
+Traceback (most recent call last):
+  File "/home/brunoprestes/Projects/ai-rpg-interface/test_vram3.py", line 18, in <module>
+    pipe_edit.to("cuda")
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 565, in to
+    module.to(device, dtype)
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 3620, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1384, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 934, in _apply
+    module._apply(fn)
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 934, in _apply
+    module._apply(fn)
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 934, in _apply
+    module._apply(fn)
+  [Previous line repeated 1 more time]
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 965, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1370, in convert
+    return t.to(
+           ^^^^^
+torch.AcceleratorError: CUDA error: out of memory
+Search for `cudaErrorMemoryAllocation' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+

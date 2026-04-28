@@ -1,0 +1,35 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files:  22%|██▏       | 4/18 [00:44<02:35, 11.13s/it]Fetching 18 files:  33%|███▎      | 6/18 [01:15<02:34, 12.85s/it]Fetching 18 files:  89%|████████▉ | 16/18 [02:07<00:14,  7.18s/it]Fetching 18 files: 100%|██████████| 18/18 [02:07<00:00,  7.10s/it]
+Loading pipeline components...:   0%|          | 0/7 [00:00<?, ?it/s]
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s][ALoading weights: 100%|██████████| 196/196 [00:00<00:00, 3793.30it/s]
+Loading pipeline components...:  14%|█▍        | 1/7 [00:00<00:01,  4.64it/s]Loading pipeline components...:  29%|██▊       | 2/7 [00:01<00:04,  1.24it/s]
+Loading weights:   0%|          | 0/517 [00:00<?, ?it/s][A
+Loading weights:  68%|██████▊   | 352/517 [00:00<00:00, 3493.35it/s][ALoading weights: 100%|██████████| 517/517 [00:00<00:00, 3505.04it/s]
+Loading pipeline components...:  43%|████▎     | 3/7 [00:01<00:02,  1.67it/s]Loading pipeline components...:  71%|███████▏  | 5/7 [00:01<00:00,  3.34it/s]Loading pipeline components...: 100%|██████████| 7/7 [00:02<00:00,  3.49it/s]
+Traceback (most recent call last):
+  File "/home/brunoprestes/Projects/ai-rpg-interface/test_sdxl.py", line 4, in <module>
+    pipe.to("cuda")
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 565, in to
+    module.to(device, dtype)
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/transformers/modeling_utils.py", line 3620, in to
+    return super().to(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1384, in to
+    return self._apply(convert)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 934, in _apply
+    module._apply(fn)
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 934, in _apply
+    module._apply(fn)
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 965, in _apply
+    param_applied = fn(param)
+                    ^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1370, in convert
+    return t.to(
+           ^^^^^
+torch.AcceleratorError: CUDA error: out of memory
+Search for `cudaErrorMemoryAllocation' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+

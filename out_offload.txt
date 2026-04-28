@@ -1,0 +1,15 @@
+Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s][ALoading weights: 100%|██████████| 398/398 [00:00<00:00, 4153.62it/s]
+Loading pipeline components...:  60%|██████    | 3/5 [00:00<00:00,  8.46it/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s][A
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.47it/s][A
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.59it/s][A
+Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  2.13it/s][ALoading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.93it/s]
+Loading pipeline components...:  80%|████████  | 4/5 [00:01<00:00,  1.67it/s]Loading pipeline components...: 100%|██████████| 5/5 [00:02<00:00,  1.75it/s]Loading pipeline components...: 100%|██████████| 5/5 [00:02<00:00,  2.02it/s]
+VRAM after offload init: 0.0
+Error: CUDA error: out of memory
+Search for `cudaErrorMemoryAllocation' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+

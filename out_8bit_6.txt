@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/home/brunoprestes/Projects/ai-rpg-interface/test_8bit_6.py", line 5, in <module>
+    quant_config = PipelineQuantizationConfig(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/quantizers/pipe_quant_config.py", line 64, in __init__
+    self.post_init()
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/quantizers/pipe_quant_config.py", line 70, in post_init
+    self._validate_init_args()
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/quantizers/pipe_quant_config.py", line 83, in _validate_init_args
+    self._validate_init_kwargs_in_backends()
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/quantizers/pipe_quant_config.py", line 91, in _validate_init_kwargs_in_backends
+    self._check_backend_availability(quant_backend)
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/quantizers/pipe_quant_config.py", line 152, in _check_backend_availability
+    raise ValueError(error_message)
+ValueError: Provided quant_backend=bitsandbytes was not found.
+Available ones (transformers): ['awq', 'bitsandbytes_4bit', 'bitsandbytes_8bit', 'eetq', 'gptq', 'aqlm', 'quanto', 'quark', 'fouroversix', 'fp_quant', 'hqq', 'compressed-tensors', 'fbgemm_fp8', 'higgs', 'torchao', 'bitnet', 'vptq', 'spqr', 'fp8', 'auto-round', 'mxfp4', 'metal', 'sinq'].
+Available ones (diffusers): ['bitsandbytes_4bit', 'bitsandbytes_8bit', 'gguf', 'quanto', 'torchao', 'modelopt'].

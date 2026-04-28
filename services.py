@@ -9,10 +9,9 @@ from openai import OpenAI
 
 # -----------------------------------------------------------------------------
 # Hugging Face inference configuration
-# -----------------------------------------------------------------------------
-# Model used for enhancing user prompts with richer D&D-style descriptions.
-# The system prompt below instructs the model to return only the improved text.
-HF_INFERENCE_MODEL = "Qwen/Qwen3.5-35B-A3B:novita"
+# Local model to use for inference. Can be overridden via LOCAL_MODEL env var.
+# Assuming you run Ollama with a command like: `ollama run mistral-nemo`
+LOCAL_INFERENCE_MODEL = os.getenv("LOCAL_MODEL", "mistral-nemo")
 
 IMPROVE_SYSTEM = (
   "### ROLE"
@@ -41,19 +40,19 @@ IMPROVE_SYSTEM = (
 
 
 # -----------------------------------------------------------------------------
-# OpenAI-compatible client for Hugging Face
+# OpenAI-compatible client for local inference engine (e.g. Ollama, vLLM)
 # -----------------------------------------------------------------------------
-# Returns a client configured to use Hugging Face's inference API so we can
-# call chat models (e.g. Qwen) for prompt improvement without hosting our own.
-def get_hf_openai_client():
+# Returns a client configured to use a local API server so we can
+# call chat models (e.g. Mistral) for prompt improvement completely offline.
+def get_local_openai_client():
     return OpenAI(
-        base_url="https://router.huggingface.co/v1",
-        api_key=os.getenv("HF_TOKEN"),
+        base_url=os.getenv("LOCAL_API_BASE", "http://127.0.0.1:11434/v1"),
+        api_key=os.getenv("LOCAL_API_KEY", "ollama"),
     )
 
 
 # -----------------------------------------------------------------------------
-# Prompt improvement via Hugging Face chat model
+# Prompt improvement via Local chat model
 # -----------------------------------------------------------------------------
 # Sends the raw user prompt to the configured model with the IMPROVE_SYSTEM
 # instructions so the model returns a single enhanced prompt string. Used when
@@ -63,9 +62,9 @@ def improve_prompt(raw_prompt: str) -> str:
         return ""
     prompt_text = raw_prompt.strip()
     system_content = IMPROVE_SYSTEM.replace("{prompt}", prompt_text)
-    client = get_hf_openai_client()
+    client = get_local_openai_client()
     completion = client.chat.completions.create(
-        model=HF_INFERENCE_MODEL,
+        model=LOCAL_INFERENCE_MODEL,
         messages=[
             {"role": "system", "content": system_content},
             {"role": "user", "content": prompt_text},
@@ -76,9 +75,9 @@ def improve_prompt(raw_prompt: str) -> str:
 
 
 # -----------------------------------------------------------------------------
-# Image generation via Hugging Face Space (Gradio client)
+# Image generation via Local Server (Gradio client)
 # -----------------------------------------------------------------------------
-# Calls the Z-Image-Turbo Space once per requested image. For a single image
+# Calls the local image generation backend once per requested image. For a single image
 # we can use a fixed seed when the user disables "Random seed"; for multiple
 # images we always use distinct random seeds so each result is unique. Returns
 # (list of image paths, list of seeds used) for the UI to display and store.
@@ -144,9 +143,9 @@ def generate_images(
 
 
 # -----------------------------------------------------------------------------
-# Image editing via Hugging Face Space (FireRed-Image-Edit)
+# Image editing via Local Server (FireRed-Image-Edit)
 # -----------------------------------------------------------------------------
-# Sends an existing image and an edit instruction to the FireRed-Image-Edit
+# Sends an existing image and an edit instruction to the local FireRed-Image-Edit
 # Space.  The Gallery input requires each item wrapped as a GalleryImage dict
 # ({"image": handle_file(...)}).  The output is (ImageData, seed).
 # Returns (edited_image_path, seed_used).

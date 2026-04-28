@@ -1,0 +1,93 @@
+nohup: ignoring input
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Loading Z-Image-Turbo to GPU 0 (8-bit quantized)...
+Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?steps/s]Loading pipeline components...:  20%|██        | 1/5 [00:00<00:00,  5.82steps/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?steps/s][A
+Loading weights:   0%|          | 1/398 [00:00<00:45,  8.78steps/s][A
+Loading weights:   1%|          | 4/398 [00:00<00:19, 19.81steps/s][A
+Loading weights:   3%|▎         | 11/398 [00:00<00:09, 39.91steps/s][A
+Loading weights:   4%|▍         | 16/398 [00:00<00:11, 34.61steps/s][A
+Loading weights:   6%|▋         | 25/398 [00:00<00:07, 50.03steps/s][A
+Loading weights:   8%|▊         | 31/398 [00:00<00:07, 48.31steps/s][A
+Loading weights:   9%|▉         | 37/398 [00:00<00:07, 46.54steps/s][A
+Loading weights:  11%|█         | 44/398 [00:00<00:06, 51.37steps/s][A
+Loading weights:  13%|█▎        | 50/398 [00:01<00:07, 44.77steps/s][A
+Loading weights:  15%|█▍        | 58/398 [00:01<00:06, 52.07steps/s][A
+Loading weights:  16%|█▌        | 64/398 [00:01<00:06, 48.54steps/s][A
+Loading weights:  18%|█▊        | 70/398 [00:01<00:07, 43.17steps/s][A
+Loading weights:  19%|█▉        | 77/398 [00:01<00:06, 48.27steps/s][A
+Loading weights:  21%|██        | 83/398 [00:01<00:07, 42.16steps/s][A
+Loading weights:  23%|██▎       | 91/398 [00:02<00:06, 47.26steps/s][A
+Loading weights:  24%|██▍       | 97/398 [00:02<00:06, 43.47steps/s][A
+Loading weights:  26%|██▌       | 102/398 [00:02<00:06, 44.81steps/s][A
+Loading weights:  27%|██▋       | 107/398 [00:02<00:06, 42.21steps/s][A
+Loading weights:  28%|██▊       | 113/398 [00:02<00:06, 45.45steps/s][A
+Loading weights:  30%|██▉       | 118/398 [00:02<00:06, 44.86steps/s][A
+Loading weights:  31%|███       | 124/398 [00:02<00:05, 47.81steps/s][A
+Loading weights:  32%|███▏      | 129/398 [00:02<00:05, 46.53steps/s][A
+Loading weights:  34%|███▍      | 135/398 [00:02<00:05, 49.10steps/s][A
+Loading weights:  35%|███▌      | 140/398 [00:03<00:05, 47.37steps/s][A
+Loading weights:  37%|███▋      | 146/398 [00:03<00:05, 49.71steps/s][A
+Loading weights:  38%|███▊      | 152/398 [00:03<00:05, 47.49steps/s][A
+Loading weights:  40%|███▉      | 158/398 [00:03<00:05, 45.28steps/s][A
+Loading weights:  41%|████▏     | 165/398 [00:03<00:04, 50.49steps/s][A
+Loading weights:  43%|████▎     | 171/398 [00:03<00:05, 44.60steps/s][A
+Loading weights:  45%|████▍     | 179/398 [00:03<00:04, 51.68steps/s][A
+Loading weights:  46%|████▋     | 185/398 [00:04<00:04, 49.03steps/s][A
+Loading weights:  48%|████▊     | 191/398 [00:04<00:04, 47.28steps/s][A
+Loading weights:  50%|████▉     | 198/398 [00:04<00:03, 51.88steps/s][A
+Loading weights:  51%|█████▏    | 204/398 [00:04<00:04, 45.47steps/s][A
+Loading weights:  53%|█████▎    | 212/398 [00:04<00:03, 50.84steps/s][A
+Loading weights:  55%|█████▍    | 218/398 [00:04<00:03, 47.53steps/s][A
+Loading weights:  56%|█████▋    | 224/398 [00:04<00:03, 45.32steps/s][A
+Loading weights:  58%|█████▊    | 231/398 [00:04<00:03, 50.14steps/s][A
+Loading weights:  60%|█████▉    | 237/398 [00:05<00:03, 44.45steps/s][A
+Loading weights:  62%|██████▏   | 245/398 [00:05<00:02, 51.30steps/s][A
+Loading weights:  63%|██████▎   | 251/398 [00:05<00:03, 47.60steps/s][A
+Loading weights:  65%|██████▍   | 257/398 [00:05<00:03, 44.37steps/s][A
+Loading weights:  66%|██████▋   | 264/398 [00:05<00:02, 47.19steps/s][A
+Loading weights:  68%|██████▊   | 269/398 [00:05<00:03, 39.23steps/s][A
+Loading weights:  70%|██████▉   | 278/398 [00:06<00:02, 48.22steps/s][A
+Loading weights:  71%|███████▏  | 284/398 [00:06<00:02, 45.71steps/s][A
+Loading weights:  73%|███████▎  | 290/398 [00:06<00:02, 44.93steps/s][A
+Loading weights:  75%|███████▍  | 297/398 [00:06<00:02, 49.82steps/s][A
+Loading weights:  76%|███████▌  | 303/398 [00:06<00:02, 44.72steps/s][A
+Loading weights:  78%|███████▊  | 311/398 [00:06<00:01, 51.63steps/s][A
+Loading weights:  80%|███████▉  | 317/398 [00:06<00:01, 49.00steps/s][A
+Loading weights:  81%|████████  | 323/398 [00:06<00:01, 47.29steps/s][A
+Loading weights:  83%|████████▎ | 330/398 [00:07<00:01, 51.90steps/s][A
+Loading weights:  84%|████████▍ | 336/398 [00:07<00:01, 44.86steps/s][A
+Loading weights:  86%|████████▋ | 344/398 [00:07<00:01, 51.12steps/s][A
+Loading weights:  88%|████████▊ | 350/398 [00:07<00:00, 48.67steps/s][A
+Loading weights:  89%|████████▉ | 356/398 [00:07<00:00, 47.00steps/s][A
+Loading weights:  91%|█████████ | 363/398 [00:07<00:00, 51.69steps/s][A
+Loading weights:  93%|█████████▎| 369/398 [00:07<00:00, 45.52steps/s][A
+Loading weights:  95%|█████████▍| 377/398 [00:08<00:00, 52.22steps/s][A
+Loading weights:  96%|█████████▌| 383/398 [00:08<00:00, 48.31steps/s][A
+Loading weights:  98%|█████████▊| 389/398 [00:08<00:00, 46.18steps/s][A
+Loading weights:  99%|█████████▉| 396/398 [00:08<00:00, 50.98steps/s][ALoading weights: 100%|██████████| 398/398 [00:08<00:00, 47.20steps/s]
+Loading pipeline components...:  40%|████      | 2/5 [00:09<00:16,  5.40s/steps]Loading pipeline components...:  80%|████████  | 4/5 [00:09<00:02,  2.20s/steps]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?steps/s][A
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.58s/steps][A
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:05<00:02,  2.62s/steps][A
+Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  1.99s/steps][ALoading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.16s/steps]
+Loading pipeline components...: 100%|██████████| 5/5 [00:16<00:00,  3.57s/steps]Loading pipeline components...: 100%|██████████| 5/5 [00:16<00:00,  3.29s/steps]
+/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:205: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+Loading FireRed-Image-Edit-1.1 to GPU 1 (8-bit quantized)...
+Traceback (most recent call last):
+  File "/home/brunoprestes/Projects/ai-rpg-interface/unified_backend.py", line 228, in <module>
+    init_models()
+  File "/home/brunoprestes/Projects/ai-rpg-interface/unified_backend.py", line 53, in init_models
+    transformer=QwenImageTransformer2DModel.from_pretrained(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/models/modeling_utils.py", line 1106, in from_pretrained
+    hf_quantizer = DiffusersAutoQuantizer.from_config(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/quantizers/auto.py", line 89, in from_config
+    quant_method = quantization_config.quant_method
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'PipelineQuantizationConfig' object has no attribute 'quant_method'

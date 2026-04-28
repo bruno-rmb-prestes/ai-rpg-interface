@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/home/brunoprestes/Projects/ai-rpg-interface/test_8bit_5.py", line 5, in <module>
+    quant_config = PipelineQuantizationConfig(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: PipelineQuantizationConfig.__init__() got an unexpected keyword argument 'quantization_backend'

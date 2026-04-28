@@ -1,0 +1,94 @@
+nohup: ignoring input
+Loading Z-Image-Turbo to GPU 0 (8-bit quantized)...
+Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?steps/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?steps/s][A
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.69s/steps][A
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:05<00:02,  2.71s/steps][A
+Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.05s/steps][ALoading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.23s/steps]
+Loading pipeline components...:  40%|████      | 2/5 [00:07<00:10,  3.54s/steps]Loading pipeline components...:  80%|████████  | 4/5 [00:07<00:01,  1.65s/steps]
+Loading weights:   0%|          | 0/398 [00:00<?, ?steps/s][A
+Loading weights:   0%|          | 1/398 [00:00<00:44,  8.87steps/s][A
+Loading weights:   1%|          | 4/398 [00:00<00:19, 19.72steps/s][A
+Loading weights:   4%|▎         | 14/398 [00:00<00:08, 46.13steps/s][A
+Loading weights:   5%|▍         | 19/398 [00:00<00:08, 45.31steps/s][A
+Loading weights:   7%|▋         | 26/398 [00:00<00:07, 48.01steps/s][A
+Loading weights:   9%|▉         | 36/398 [00:00<00:06, 55.71steps/s][A
+Loading weights:  11%|█         | 42/398 [00:00<00:06, 52.57steps/s][A
+Loading weights:  12%|█▏        | 48/398 [00:01<00:06, 51.26steps/s][A
+Loading weights:  15%|█▍        | 58/398 [00:01<00:06, 55.77steps/s][A
+Loading weights:  16%|█▌        | 64/398 [00:01<00:06, 52.37steps/s][A
+Loading weights:  18%|█▊        | 70/398 [00:01<00:06, 51.22steps/s][A
+Loading weights:  20%|██        | 80/398 [00:01<00:05, 58.00steps/s][A
+Loading weights:  22%|██▏       | 86/398 [00:01<00:05, 55.52steps/s][A
+Loading weights:  23%|██▎       | 92/398 [00:01<00:05, 52.02steps/s][A
+Loading weights:  26%|██▌       | 102/398 [00:01<00:05, 56.30steps/s][A
+Loading weights:  27%|██▋       | 108/398 [00:02<00:05, 52.29steps/s][A
+Loading weights:  29%|██▊       | 114/398 [00:02<00:05, 49.88steps/s][A
+Loading weights:  31%|███       | 124/398 [00:02<00:04, 54.82steps/s][A
+Loading weights:  33%|███▎      | 130/398 [00:02<00:05, 53.20steps/s][A
+Loading weights:  34%|███▍      | 136/398 [00:02<00:05, 52.10steps/s][A
+Loading weights:  37%|███▋      | 146/398 [00:02<00:04, 58.35steps/s][A
+Loading weights:  38%|███▊      | 152/398 [00:02<00:04, 55.27steps/s][A
+Loading weights:  40%|███▉      | 158/398 [00:03<00:04, 52.97steps/s][A
+Loading weights:  42%|████▏     | 168/398 [00:03<00:03, 58.78steps/s][A
+Loading weights:  44%|████▎     | 174/398 [00:03<00:04, 55.62steps/s][A
+Loading weights:  45%|████▌     | 180/398 [00:03<00:04, 53.21steps/s][A
+Loading weights:  48%|████▊     | 190/398 [00:03<00:03, 59.11steps/s][A
+Loading weights:  49%|████▉     | 196/398 [00:03<00:03, 55.36steps/s][A
+Loading weights:  51%|█████     | 202/398 [00:03<00:03, 52.46steps/s][A
+Loading weights:  53%|█████▎    | 212/398 [00:03<00:03, 58.51steps/s][A
+Loading weights:  55%|█████▍    | 218/398 [00:04<00:03, 55.47steps/s][A
+Loading weights:  56%|█████▋    | 224/398 [00:04<00:03, 53.32steps/s][A
+Loading weights:  59%|█████▉    | 234/398 [00:04<00:02, 59.01steps/s][A
+Loading weights:  60%|██████    | 240/398 [00:04<00:02, 54.65steps/s][A
+Loading weights:  62%|██████▏   | 246/398 [00:04<00:02, 52.14steps/s][A
+Loading weights:  64%|██████▍   | 256/398 [00:04<00:02, 58.18steps/s][A
+Loading weights:  66%|██████▌   | 262/398 [00:04<00:02, 54.65steps/s][A
+Loading weights:  67%|██████▋   | 268/398 [00:05<00:02, 51.34steps/s][A
+Loading weights:  70%|██████▉   | 278/398 [00:05<00:02, 57.62steps/s][A
+Loading weights:  71%|███████▏  | 284/398 [00:05<00:02, 54.70steps/s][A
+Loading weights:  73%|███████▎  | 290/398 [00:05<00:02, 52.61steps/s][A
+Loading weights:  75%|███████▌  | 300/398 [00:05<00:01, 58.57steps/s][A
+Loading weights:  77%|███████▋  | 306/398 [00:05<00:01, 55.65steps/s][A
+Loading weights:  78%|███████▊  | 312/398 [00:05<00:01, 53.46steps/s][A
+Loading weights:  81%|████████  | 322/398 [00:05<00:01, 57.04steps/s][A
+Loading weights:  82%|████████▏ | 328/398 [00:06<00:01, 54.22steps/s][A
+Loading weights:  84%|████████▍ | 334/398 [00:06<00:01, 52.39steps/s][A
+Loading weights:  86%|████████▋ | 344/398 [00:06<00:00, 58.08steps/s][A
+Loading weights:  88%|████████▊ | 350/398 [00:06<00:00, 55.04steps/s][A
+Loading weights:  89%|████████▉ | 356/398 [00:06<00:00, 52.53steps/s][A
+Loading weights:  92%|█████████▏| 366/398 [00:06<00:00, 57.90steps/s][A
+Loading weights:  93%|█████████▎| 372/398 [00:06<00:00, 54.22steps/s][A
+Loading weights:  95%|█████████▍| 378/398 [00:07<00:00, 52.15steps/s][A
+Loading weights:  97%|█████████▋| 388/398 [00:07<00:00, 58.34steps/s][A
+Loading weights:  99%|█████████▉| 394/398 [00:07<00:00, 55.64steps/s][ALoading weights: 100%|██████████| 398/398 [00:07<00:00, 54.52steps/s]
+Loading pipeline components...: 100%|██████████| 5/5 [00:15<00:00,  3.43s/steps]Loading pipeline components...: 100%|██████████| 5/5 [00:15<00:00,  3.08s/steps]
+/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:205: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+Loading FireRed-Image-Edit-1.1 to GPU 1...
+Fetching 3 files:   0%|          | 0/3 [00:00<?, ?steps/s]Fetching 3 files: 100%|██████████| 3/3 [00:00<00:00, 19358.33steps/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?steps/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:08<00:16,  8.41s/steps]Loading checkpoint shards:  33%|███▎      | 1/3 [00:08<00:17,  8.81s/steps]
+Traceback (most recent call last):
+  File "/home/brunoprestes/Projects/ai-rpg-interface/unified_backend.py", line 220, in <module>
+    init_models()
+  File "/home/brunoprestes/Projects/ai-rpg-interface/unified_backend.py", line 47, in init_models
+    transformer=QwenImageTransformer2DModel.from_pretrained(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/models/modeling_utils.py", line 1312, in from_pretrained
+    ) = cls._load_pretrained_model(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/models/modeling_utils.py", line 1699, in _load_pretrained_model
+    offload_index, state_dict_index, _mismatched_keys, _error_msgs = load_fn(shard_file)
+                                                                     ^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/models/model_loading_utils.py", line 368, in _load_shard_file
+    offload_index, state_dict_index = load_model_dict_into_meta(
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/models/model_loading_utils.py", line 307, in load_model_dict_into_meta
+    set_module_tensor_to_device(model, param_name, param_device, value=param, **set_module_kwargs)
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/accelerate/utils/modeling.py", line 343, in set_module_tensor_to_device
+    new_value = value.to(device, non_blocking=non_blocking)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 108.00 MiB. GPU 1 has a total capacity of 19.58 GiB of which 48.44 MiB is free. Including non-PyTorch memory, this process has 19.53 GiB memory in use. Of the allocated memory 19.31 GiB is allocated by PyTorch, and 3.65 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)

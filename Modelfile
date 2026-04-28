@@ -1,0 +1,5 @@
+FROM qwen2.5-coder:32b
+# 32k context is plenty for most repos
+PARAMETER num_ctx 32768
+# Ensure it doesn't unload too quickly
+PARAMETER stop 0h
