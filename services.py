@@ -1,6 +1,7 @@
 # services.py — Business logic and API clients for the AI Image Generator app.
 # This module keeps all Hugging Face API calls, prompt improvement, and image generation
 # logic separate from the Streamlit UI so the front-end stays readable and testable.
+# Exports: IMPROVE_SYSTEM (default system prompt), improve_prompt, generate_images, edit_image.
 
 import os
 import random
@@ -55,14 +56,18 @@ def get_hf_openai_client():
 # -----------------------------------------------------------------------------
 # Prompt improvement via Hugging Face chat model
 # -----------------------------------------------------------------------------
-# Sends the raw user prompt to the configured model with the IMPROVE_SYSTEM
-# instructions so the model returns a single enhanced prompt string. Used when
-# the user clicks "Improve prompt" to get a more detailed description.
-def improve_prompt(raw_prompt: str) -> str:
+# Sends the raw user prompt to the configured model.
+# `custom_system_prompt` — when provided, replaces IMPROVE_SYSTEM entirely so
+# the caller (UI) can let the user define their own system prompt at runtime.
+# If omitted, falls back to the module-level IMPROVE_SYSTEM constant.
+# The placeholder `{user_prompt}` inside the system prompt is replaced with the
+# actual user text before the API call.
+def improve_prompt(raw_prompt: str, custom_system_prompt: str | None = None) -> str:
     if not raw_prompt or not raw_prompt.strip():
         return ""
     prompt_text = raw_prompt.strip()
-    system_content = IMPROVE_SYSTEM.replace("{prompt}", prompt_text)
+    base_system = custom_system_prompt if custom_system_prompt and custom_system_prompt.strip() else IMPROVE_SYSTEM
+    system_content = base_system.replace("{user_prompt}", prompt_text)
     client = get_hf_openai_client()
     completion = client.chat.completions.create(
         model=HF_INFERENCE_MODEL,

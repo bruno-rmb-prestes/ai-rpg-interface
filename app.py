@@ -9,7 +9,7 @@ import streamlit as st
 from gradio_client import Client
 import httpcore._backends.sync
 
-from services import improve_prompt, generate_images, edit_image
+from services import improve_prompt, generate_images, edit_image, IMPROVE_SYSTEM
 
 load_dotenv()
 
@@ -79,6 +79,9 @@ if "clear_prompt_on_next_run" not in st.session_state:
     st.session_state.clear_prompt_on_next_run = False
 if "pending_edit" not in st.session_state:
     st.session_state.pending_edit = None
+# Custom system prompt for the prompt enhancer, seeded with the module default.
+if "system_prompt" not in st.session_state:
+    st.session_state.system_prompt = IMPROVE_SYSTEM
 
 # Applies “clear input” or “use improved prompt” at the start of each run,
 # before the text area is rendered, so the user sees the correct value.
@@ -226,7 +229,11 @@ if st.session_state.pending_improve is not None:
     prompt_to_improve = st.session_state.pending_improve
     with st.spinner("Improving prompt with Qwen..."):
         try:
-            improved = improve_prompt(prompt_to_improve)
+            # Pass the user-defined system prompt so customisations are applied.
+            improved = improve_prompt(
+                prompt_to_improve,
+                custom_system_prompt=st.session_state.system_prompt,
+            )
             if improved:
                 st.session_state.improved_prompt_to_apply = improved
         except Exception as e:
@@ -382,6 +389,46 @@ if edit_request is not None and not is_busy:
 # “About” / “Tips” content live here as well.
 with st.sidebar:
     st.header("Settings")
+
+    # -------------------------------------------------------------------------
+    # Prompt Enhancer Settings
+    # -------------------------------------------------------------------------
+    # Allows the user to customise the system prompt sent to Qwen when "Improve
+    # prompt" is clicked. Edits are stored in session state and forwarded to
+    # improve_prompt() at runtime. Resetting restores the module-level default.
+    with st.expander("✨ Prompt Enhancer Settings", expanded=False):
+        st.caption(
+            "Customise the system prompt sent to the AI when you click "
+            "**✨ Improve prompt**. Use `{user_prompt}` as the placeholder "
+            "for the user's original text."
+        )
+        edited_system_prompt = st.text_area(
+            "System prompt",
+            value=st.session_state.system_prompt,
+            height=300,
+            key="system_prompt_editor",
+            label_visibility="collapsed",
+            help="The system prompt used by the Qwen model to expand your description.",
+        )
+        col_apply, col_reset = st.columns(2)
+        with col_apply:
+            if st.button(
+                "Apply",
+                use_container_width=True,
+                help="Save your changes to the system prompt.",
+            ):
+                st.session_state.system_prompt = edited_system_prompt
+                st.success("System prompt updated!")
+        with col_reset:
+            if st.button(
+                "Reset to default",
+                use_container_width=True,
+                help="Restore the built-in D&D system prompt.",
+            ):
+                st.session_state.system_prompt = IMPROVE_SYSTEM
+                st.rerun()
+
+    st.markdown("---")
 
     st.subheader("Image Settings")
     st.session_state.width = st.select_slider(
