@@ -1,15 +1,87 @@
-Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?it/s]
-Loading weights:   0%|          | 0/398 [00:00<?, ?it/s][ALoading weights: 100%|██████████| 398/398 [00:00<00:00, 4153.62it/s]
-Loading pipeline components...:  60%|██████    | 3/5 [00:00<00:00,  8.46it/s]
+Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?it/s]Loading pipeline components...:  40%|████      | 2/5 [00:00<00:00,  3.35it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s][A
+Loading weights:   0%|          | 1/398 [00:00<00:45,  8.74it/s][A
+Loading weights:   1%|          | 4/398 [00:00<00:19, 20.10it/s][A
+Loading weights:   4%|▎         | 14/398 [00:00<00:08, 46.54it/s][A
+Loading weights:   5%|▍         | 19/398 [00:00<00:08, 46.17it/s][A
+Loading weights:   7%|▋         | 26/398 [00:00<00:07, 48.86it/s][A
+Loading weights:   9%|▉         | 36/398 [00:00<00:06, 58.02it/s][A
+Loading weights:  11%|█         | 42/398 [00:00<00:06, 55.33it/s][A
+Loading weights:  12%|█▏        | 48/398 [00:00<00:06, 53.45it/s][A
+Loading weights:  15%|█▍        | 58/398 [00:01<00:05, 60.20it/s][A
+Loading weights:  16%|█▌        | 64/398 [00:01<00:05, 56.69it/s][A
+Loading weights:  18%|█▊        | 70/398 [00:01<00:06, 54.54it/s][A
+Loading weights:  20%|██        | 80/398 [00:01<00:05, 60.68it/s][A
+Loading weights:  22%|██▏       | 86/398 [00:01<00:05, 57.33it/s][A
+Loading weights:  23%|██▎       | 92/398 [00:01<00:05, 54.98it/s][A
+Loading weights:  26%|██▌       | 102/398 [00:01<00:04, 60.81it/s][A
+Loading weights:  27%|██▋       | 109/398 [00:01<00:04, 59.78it/s][A
+Loading weights:  29%|██▉       | 115/398 [00:02<00:05, 50.11it/s][A
+Loading weights:  31%|███▏      | 125/398 [00:02<00:04, 56.90it/s][A
+Loading weights:  34%|███▍      | 135/398 [00:02<00:04, 60.80it/s][A
+Loading weights:  36%|███▌      | 142/398 [00:02<00:04, 57.46it/s][A
+Loading weights:  37%|███▋      | 148/398 [00:02<00:05, 46.66it/s][A
+Loading weights:  40%|███▉      | 158/398 [00:02<00:04, 51.74it/s][A
+Loading weights:  42%|████▏     | 168/398 [00:03<00:04, 55.45it/s][A
+Loading weights:  44%|████▎     | 174/398 [00:03<00:04, 53.95it/s][A
+Loading weights:  45%|████▌     | 180/398 [00:03<00:04, 52.85it/s][A
+Loading weights:  48%|████▊     | 190/398 [00:03<00:03, 58.94it/s][A
+Loading weights:  49%|████▉     | 196/398 [00:03<00:03, 54.03it/s][A
+Loading weights:  51%|█████     | 202/398 [00:03<00:03, 51.93it/s][A
+Loading weights:  53%|█████▎    | 212/398 [00:03<00:03, 58.53it/s][A
+Loading weights:  55%|█████▍    | 218/398 [00:04<00:03, 55.87it/s][A
+Loading weights:  56%|█████▋    | 224/398 [00:04<00:03, 53.97it/s][A
+Loading weights:  59%|█████▉    | 234/398 [00:04<00:02, 60.19it/s][A
+Loading weights:  60%|██████    | 240/398 [00:04<00:02, 57.16it/s][A
+Loading weights:  62%|██████▏   | 246/398 [00:04<00:02, 54.89it/s][A
+Loading weights:  64%|██████▍   | 256/398 [00:04<00:02, 60.78it/s][A
+Loading weights:  66%|██████▌   | 263/398 [00:04<00:02, 59.95it/s][A
+Loading weights:  68%|██████▊   | 269/398 [00:04<00:02, 50.33it/s][A
+Loading weights:  70%|███████   | 279/398 [00:05<00:02, 57.25it/s][A
+Loading weights:  73%|███████▎  | 289/398 [00:05<00:01, 61.81it/s][A
+Loading weights:  74%|███████▍  | 296/398 [00:05<00:01, 60.65it/s][A
+Loading weights:  76%|███████▌  | 303/398 [00:05<00:01, 52.98it/s][A
+Loading weights:  78%|███████▊  | 312/398 [00:05<00:01, 56.78it/s][A
+Loading weights:  81%|████████  | 322/398 [00:05<00:01, 61.82it/s][A
+Loading weights:  83%|████████▎ | 329/398 [00:05<00:01, 60.64it/s][A
+Loading weights:  84%|████████▍ | 336/398 [00:06<00:01, 51.23it/s][A
+Loading weights:  87%|████████▋ | 345/398 [00:06<00:00, 55.11it/s][A
+Loading weights:  89%|████████▉ | 355/398 [00:06<00:00, 58.91it/s][A
+Loading weights:  91%|█████████ | 362/398 [00:06<00:00, 58.44it/s][A
+Loading weights:  92%|█████████▏| 368/398 [00:06<00:00, 49.86it/s][A
+Loading weights:  95%|█████████▍| 378/398 [00:06<00:00, 56.28it/s][A
+Loading weights:  97%|█████████▋| 388/398 [00:06<00:00, 61.15it/s][A
+Loading weights:  99%|█████████▉| 395/398 [00:07<00:00, 60.08it/s][ALoading weights: 100%|██████████| 398/398 [00:07<00:00, 56.04it/s]
+Loading pipeline components...:  60%|██████    | 3/5 [00:08<00:06,  3.35s/it]
 Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s][A
-Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.47it/s][A
-Loading checkpoint shards:  67%|██████▋   | 2/3 [00:01<00:00,  1.59it/s][A
-Loading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  2.13it/s][ALoading checkpoint shards: 100%|██████████| 3/3 [00:01<00:00,  1.93it/s]
-Loading pipeline components...:  80%|████████  | 4/5 [00:01<00:00,  1.67it/s]Loading pipeline components...: 100%|██████████| 5/5 [00:02<00:00,  1.75it/s]Loading pipeline components...: 100%|██████████| 5/5 [00:02<00:00,  2.02it/s]
-VRAM after offload init: 0.0
-Error: CUDA error: out of memory
-Search for `cudaErrorMemoryAllocation' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
-CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
-For debugging consider passing CUDA_LAUNCH_BLOCKING=1
-Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
-
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:04,  2.41s/it][ALoading checkpoint shards:  33%|███▎      | 1/3 [00:03<00:07,  3.64s/it]
+Loading pipeline components...:  80%|████████  | 4/5 [00:12<00:03,  3.02s/it]
+Traceback (most recent call last):
+  File "/home/brunoprestes/Projects/ai-rpg-interface/test_offload.py", line 11, in <module>
+    pipe = DiffusionPipeline.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 1049, in from_pretrained
+    loaded_sub_model = load_sub_model(
+                       ^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/pipelines/pipeline_loading_utils.py", line 885, in load_sub_model
+    loaded_sub_model = load_method(os.path.join(cached_folder, name), **loading_kwargs)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/models/modeling_utils.py", line 1312, in from_pretrained
+    ) = cls._load_pretrained_model(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/models/modeling_utils.py", line 1699, in _load_pretrained_model
+    offload_index, state_dict_index, _mismatched_keys, _error_msgs = load_fn(shard_file)
+                                                                     ^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/models/model_loading_utils.py", line 368, in _load_shard_file
+    offload_index, state_dict_index = load_model_dict_into_meta(
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/models/model_loading_utils.py", line 243, in load_model_dict_into_meta
+    if dtype is not None and torch.is_floating_point(param):
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

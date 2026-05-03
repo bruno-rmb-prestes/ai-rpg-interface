@@ -1,5 +1,4 @@
 import torch
-import gc
 from diffusers import DiffusionPipeline
 from diffusers.quantizers import PipelineQuantizationConfig
 
@@ -13,9 +12,9 @@ pipe = DiffusionPipeline.from_pretrained(
     torch_dtype=torch.bfloat16,
     quantization_config=quant_config,
 )
-pipe.enable_model_cpu_offload()
-print("GPU memory after load:", torch.cuda.memory_allocated(0))
-
-prompt = "a dog"
-image = pipe(prompt=prompt, height=512, width=512, num_inference_steps=2).images[0]
-print("GPU memory after inference:", torch.cuda.memory_allocated(0))
+print("GPU memory:", torch.cuda.memory_allocated(0))
+try:
+    pipe.to("cpu")
+    print("Moved to CPU successfully.")
+except Exception as e:
+    print("Failed to move to CPU:", e)

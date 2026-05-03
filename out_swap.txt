@@ -1,0 +1,109 @@
+Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s][A
+Loading weights:   0%|          | 1/398 [00:00<04:14,  1.56it/s][A
+Loading weights:   1%|          | 4/398 [00:00<01:06,  5.92it/s][A
+Loading weights:   2%|▏         | 9/398 [00:00<00:29, 13.34it/s][A
+Loading weights:   4%|▎         | 14/398 [00:01<00:19, 19.50it/s][A
+Loading weights:   4%|▍         | 17/398 [00:01<00:20, 18.74it/s][A
+Loading weights:   6%|▋         | 25/398 [00:01<00:13, 27.06it/s][A
+Loading weights:   7%|▋         | 29/398 [00:01<00:14, 25.62it/s][A
+Loading weights:   9%|▉         | 36/398 [00:01<00:12, 29.92it/s][A
+Loading weights:  10%|█         | 40/398 [00:01<00:12, 27.56it/s][A
+Loading weights:  12%|█▏        | 47/398 [00:02<00:11, 30.87it/s][A
+Loading weights:  13%|█▎        | 51/398 [00:02<00:12, 28.07it/s][A
+Loading weights:  15%|█▍        | 58/398 [00:02<00:10, 31.14it/s][A
+Loading weights:  16%|█▌        | 62/398 [00:02<00:11, 28.21it/s][A
+Loading weights:  17%|█▋        | 69/398 [00:02<00:10, 30.94it/s][A
+Loading weights:  18%|█▊        | 73/398 [00:03<00:11, 28.58it/s][A
+Loading weights:  20%|██        | 80/398 [00:03<00:09, 31.92it/s][A
+Loading weights:  21%|██        | 84/398 [00:03<00:10, 29.22it/s][A
+Loading weights:  23%|██▎       | 91/398 [00:03<00:09, 32.44it/s][A
+Loading weights:  24%|██▍       | 95/398 [00:03<00:10, 29.35it/s][A
+Loading weights:  26%|██▌       | 102/398 [00:03<00:09, 32.35it/s][A
+Loading weights:  27%|██▋       | 106/398 [00:04<00:10, 28.80it/s][A
+Loading weights:  28%|██▊       | 113/398 [00:04<00:09, 31.39it/s][A
+Loading weights:  29%|██▉       | 117/398 [00:04<00:09, 28.26it/s][A
+Loading weights:  31%|███       | 124/398 [00:04<00:08, 31.10it/s][A
+Loading weights:  32%|███▏      | 128/398 [00:04<00:09, 28.27it/s][A
+Loading weights:  34%|███▍      | 135/398 [00:05<00:08, 31.15it/s][A
+Loading weights:  35%|███▍      | 139/398 [00:05<00:09, 28.31it/s][A
+Loading weights:  37%|███▋      | 146/398 [00:05<00:08, 30.96it/s][A
+Loading weights:  38%|███▊      | 150/398 [00:05<00:08, 28.02it/s][A
+Loading weights:  39%|███▉      | 157/398 [00:05<00:07, 30.89it/s][A
+Loading weights:  40%|████      | 161/398 [00:06<00:08, 27.85it/s][A
+Loading weights:  42%|████▏     | 168/398 [00:06<00:07, 30.58it/s][A
+Loading weights:  43%|████▎     | 172/398 [00:06<00:08, 27.69it/s][A
+Loading weights:  45%|████▍     | 179/398 [00:06<00:07, 30.53it/s][A
+Loading weights:  46%|████▌     | 183/398 [00:06<00:07, 27.59it/s][A
+Loading weights:  48%|████▊     | 190/398 [00:06<00:06, 30.29it/s][A
+Loading weights:  49%|████▊     | 194/398 [00:07<00:07, 27.33it/s][A
+Loading weights:  51%|█████     | 201/398 [00:07<00:06, 30.12it/s][A
+Loading weights:  52%|█████▏    | 205/398 [00:07<00:07, 27.34it/s][A
+Loading weights:  53%|█████▎    | 212/398 [00:07<00:06, 30.04it/s][A
+Loading weights:  54%|█████▍    | 216/398 [00:07<00:06, 27.47it/s][A
+Loading weights:  56%|█████▌    | 223/398 [00:08<00:05, 30.46it/s][A
+Loading weights:  57%|█████▋    | 227/398 [00:08<00:06, 27.84it/s][A
+Loading weights:  59%|█████▉    | 234/398 [00:08<00:05, 31.20it/s][A
+Loading weights:  60%|█████▉    | 238/398 [00:08<00:05, 28.79it/s][A
+Loading weights:  62%|██████▏   | 245/398 [00:08<00:04, 32.10it/s][A
+Loading weights:  63%|██████▎   | 249/398 [00:08<00:05, 29.42it/s][A
+Loading weights:  64%|██████▍   | 256/398 [00:09<00:04, 32.62it/s][A
+Loading weights:  65%|██████▌   | 260/398 [00:09<00:04, 29.81it/s][A
+Loading weights:  67%|██████▋   | 267/398 [00:09<00:03, 32.80it/s][A
+Loading weights:  68%|██████▊   | 271/398 [00:09<00:04, 29.68it/s][A
+Loading weights:  70%|██████▉   | 278/398 [00:09<00:03, 32.65it/s][A
+Loading weights:  71%|███████   | 282/398 [00:10<00:03, 29.76it/s][A
+Loading weights:  73%|███████▎  | 289/398 [00:10<00:03, 32.75it/s][A
+Loading weights:  74%|███████▎  | 293/398 [00:10<00:03, 29.49it/s][A
+Loading weights:  75%|███████▌  | 300/398 [00:10<00:03, 31.96it/s][A
+Loading weights:  76%|███████▋  | 304/398 [00:10<00:03, 28.68it/s][A
+Loading weights:  78%|███████▊  | 311/398 [00:10<00:02, 31.45it/s][A
+Loading weights:  79%|███████▉  | 315/398 [00:11<00:02, 28.47it/s][A
+Loading weights:  81%|████████  | 322/398 [00:11<00:02, 31.35it/s][A
+Loading weights:  82%|████████▏ | 326/398 [00:11<00:02, 28.30it/s][A
+Loading weights:  84%|████████▎ | 333/398 [00:11<00:02, 31.11it/s][A
+Loading weights:  85%|████████▍ | 337/398 [00:11<00:02, 28.27it/s][A
+Loading weights:  86%|████████▋ | 344/398 [00:12<00:01, 31.10it/s][A
+Loading weights:  87%|████████▋ | 348/398 [00:12<00:01, 28.31it/s][A
+Loading weights:  89%|████████▉ | 355/398 [00:12<00:01, 31.27it/s][A
+Loading weights:  90%|█████████ | 359/398 [00:12<00:01, 28.39it/s][A
+Loading weights:  92%|█████████▏| 366/398 [00:12<00:01, 30.85it/s][A
+Loading weights:  93%|█████████▎| 370/398 [00:13<00:01, 27.86it/s][A
+Loading weights:  95%|█████████▍| 377/398 [00:13<00:00, 30.88it/s][A
+Loading weights:  96%|█████████▌| 381/398 [00:13<00:00, 28.04it/s][A
+Loading weights:  97%|█████████▋| 388/398 [00:13<00:00, 30.99it/s][A
+Loading weights:  98%|█████████▊| 392/398 [00:13<00:00, 28.08it/s][ALoading weights: 100%|██████████| 398/398 [00:13<00:00, 28.74it/s]
+Loading pipeline components...:  20%|██        | 1/5 [00:14<00:57, 14.47s/it]Loading pipeline components...:  40%|████      | 2/5 [00:14<00:18,  6.02s/it]Loading pipeline components...:  60%|██████    | 3/5 [00:15<00:07,  3.52s/it]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s][A
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:04,  2.47s/it][A
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:05<00:02,  2.75s/it][ALoading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:03,  3.01s/it]
+Loading pipeline components...:  80%|████████  | 4/5 [00:21<00:05,  5.32s/it]
+Traceback (most recent call last):
+  File "/home/brunoprestes/Projects/ai-rpg-interface/test_swap.py", line 10, in <module>
+    pipe = DiffusionPipeline.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 1049, in from_pretrained
+    loaded_sub_model = load_sub_model(
+                       ^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/pipelines/pipeline_loading_utils.py", line 885, in load_sub_model
+    loaded_sub_model = load_method(os.path.join(cached_folder, name), **loading_kwargs)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 88, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/models/modeling_utils.py", line 1312, in from_pretrained
+    ) = cls._load_pretrained_model(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/models/modeling_utils.py", line 1699, in _load_pretrained_model
+    offload_index, state_dict_index, _mismatched_keys, _error_msgs = load_fn(shard_file)
+                                                                     ^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/models/model_loading_utils.py", line 368, in _load_shard_file
+    offload_index, state_dict_index = load_model_dict_into_meta(
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/brunoprestes/Projects/ai-rpg-interface/.venv/lib/python3.12/site-packages/diffusers/models/model_loading_utils.py", line 253, in load_model_dict_into_meta
+    param = param.to(dtype)
+            ^^^^^^^^^^^^^^^
+KeyboardInterrupt

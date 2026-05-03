@@ -13,41 +13,73 @@ from qwenimage.qwen_fa3_processor import QwenDoubleStreamAttnProcessorFA3
 
 # --- Config & Init ---
 device_gen = "cuda:0"
-device_edit = "cuda:1"
+device_edit = "cuda:0"
 dtype = torch.bfloat16
 
 # Global references to the pipelines
-pipe_gen = None
-pipe_edit = None
+active_pipe = None
 current_loaded = None
 
 from diffusers.quantizers import PipelineQuantizationConfig
 from diffusers import BitsAndBytesConfig as DiffusersBitsAndBytesConfig
 
 def init_models():
-    global pipe_gen, pipe_edit
-    
-    print("Loading Z-Image-Turbo to GPU 0 (8-bit quantized)...")
+    """
+    Initializes by ensuring the generation model is loaded first.
+    """
+    ensure_gen_loaded()
+    print("Backend initialized successfully.")
+
+# --- Pipeline Swapping Logic ---
+def ensure_gen_loaded():
+    """
+    Ensures that Z-Image-Turbo is loaded. If FireRed is present, it deletes it to free VRAM.
+    """
+    global active_pipe, current_loaded
+    if current_loaded == "gen":
+        return
+        
+    print("Swapping models: Loading Z-Image-Turbo to GPU (8-bit quantized)...")
+    if active_pipe is not None:
+        del active_pipe
+        gc.collect()
+        torch.cuda.empty_cache()
+        
     quant_config = PipelineQuantizationConfig(
         quant_backend="bitsandbytes_8bit", 
         quant_kwargs={"load_in_8bit": True}
     )
     
-    pipe_gen = DiffusionPipeline.from_pretrained(
+    active_pipe = DiffusionPipeline.from_pretrained(
         "Tongyi-MAI/Z-Image-Turbo",
         torch_dtype=dtype,
         quantization_config=quant_config,
-        device_map="balanced",
     )
+    active_pipe.to(device_gen)
+    current_loaded = "gen"
+    print("Z-Image-Turbo is now active.")
 
-    print("Loading FireRed-Image-Edit-1.1 to GPU 1 (8-bit quantized)...")
+def ensure_edit_loaded():
+    """
+    Ensures that FireRed is loaded. If Z-Image-Turbo is present, it deletes it to free VRAM.
+    """
+    global active_pipe, current_loaded
+    if current_loaded == "edit":
+        return
+        
+    print("Swapping models: Loading FireRed-Image-Edit-1.1 to GPU (8-bit quantized)...")
+    if active_pipe is not None:
+        del active_pipe
+        gc.collect()
+        torch.cuda.empty_cache()
+        
     quant_config_edit = PipelineQuantizationConfig(
         quant_backend="bitsandbytes_8bit", 
         quant_kwargs={"load_in_8bit": True}
     )
-    
     quant_config_model = DiffusersBitsAndBytesConfig(load_in_8bit=True)
-    pipe_edit = QwenImageEditPlusPipeline.from_pretrained(
+    
+    active_pipe = QwenImageEditPlusPipeline.from_pretrained(
         "FireRedTeam/FireRed-Image-Edit-1.1",
         transformer=QwenImageTransformer2DModel.from_pretrained(
             "prithivMLmods/Qwen-Image-Edit-Rapid-AIO-V19",
@@ -56,29 +88,17 @@ def init_models():
         ),
         torch_dtype=dtype,
         quantization_config=quant_config_edit,
-        device_map="balanced",
     )
-
+    active_pipe.to(device_gen)  # Map to the only visible GPU
+    
     try:
-        pipe_edit.transformer.set_attn_processor(QwenDoubleStreamAttnProcessorFA3())
+        active_pipe.transformer.set_attn_processor(QwenDoubleStreamAttnProcessorFA3())
         print("Flash Attention 3 Processor set successfully.")
     except Exception as e:
         print(f"Warning: Could not set FA3 processor: {e}")
-
-    print("All models loaded successfully.")
-
-# --- Pipeline Swapping Logic ---
-def ensure_gen_loaded():
-    """
-    Models are statically assigned. No swapping needed.
-    """
-    pass
-
-def ensure_edit_loaded():
-    """
-    Models are statically assigned. No swapping needed.
-    """
-    pass
+        
+    current_loaded = "edit"
+    print("FireRed-Image-Edit is now active.")
 
 
 # --- Inference Functions ---
@@ -105,7 +125,7 @@ def generate_image(prompt, height, width, num_inference_steps, seed, randomize_s
         seed = torch.randint(0, 2**32 - 1, (1,)).item()
     
     generator = torch.Generator(device_gen).manual_seed(int(seed))
-    image = pipe_gen(
+    image = active_pipe(
         prompt=prompt,
         height=int(height),
         width=int(width),
@@ -205,7 +225,7 @@ def infer(
     width, height = update_dimensions_on_upload(pil_images[0])
 
     try:
-        result_image = pipe_edit(
+        result_image = active_pipe(
             image=pil_images,
             prompt=prompt,
             negative_prompt=negative_prompt,
