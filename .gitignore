@@ -22,6 +22,8 @@ dist/
 .idea/
 *.swp
 *.swo
+.antigravity_skills
+
 
 # OS
 .DS_Store
